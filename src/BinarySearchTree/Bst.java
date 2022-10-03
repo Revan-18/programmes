@@ -4,7 +4,8 @@ public class Bst {
 
     static class Node{
         Integer key;
-        Node left,right;
+        Node left;
+        Node right;
 
         public Node(int key){
             this.key = key;
