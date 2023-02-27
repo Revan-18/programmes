@@ -1,0 +1,89 @@
+swagger: '2.0'
+info:
+  title: Convert Customer to User API
+  description: API to convert a Customer object to a User object
+  version: "1.0.0"
+host: localhost:8080
+basePath: /api
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /converttouser:
+    post:
+      summary: Convert a Customer to a User
+      description: |
+        This API accepts a Customer object and converts it to a User object.
+        The response will contain the User object.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Customer'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        "400":
+          $ref: '#/responses/BadRequest'
+        "500":
+          $ref: '#/responses/ServerError'
+  responses:
+    BadRequest:
+      description: Bad Request
+      schema:
+        $ref: '#/definitions/Error'
+    ServerError:
+      description: Server Error
+      schema:
+        $ref: '#/definitions/Error'
+  definitions:
+    Customer:
+      type: object
+      properties:
+        name:
+          type: string
+          example: John Doe
+        id:
+          type: integer
+          example: 1234
+        age:
+          type: integer
+          example: 25
+        marriage:
+          type: boolean
+          example: false
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          example: John Doe
+        id:
+          type: integer
+          example: 1234
+        school:
+          type: string
+          example: University of XYZ
+        networth:
+          type: number
+          example: 1000000.0
+        car types:
+          type: array
+          items:
+            type: string
+            example: Sedan
+    Error:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        message:
+          type: string
+          example: An error occurred
