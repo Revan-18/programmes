@@ -1,0 +1,91 @@
+openapi: 3.0.0
+info:
+  title: Convert Customer to User API
+  description: API to convert a Customer object to a User object
+  version: "1.0.0"
+servers:
+  - url: http://localhost:8080/api
+paths:
+  /converttouser:
+    post:
+      summary: Convert a Customer to a User
+      description: |
+        This API accepts a Customer object and converts it to a User object.
+        The response will contain the User object.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "500":
+          $ref: '#/components/responses/ServerError'
+    components:
+      schemas:
+        Customer:
+          type: object
+          properties:
+            name:
+              type: string
+              example: John Doe
+            id:
+              type: integer
+              example: 1234
+            age:
+              type: integer
+              example: 25
+            marriage:
+              type: boolean
+              example: false
+        User:
+          type: object
+          properties:
+            name:
+              type: string
+              example: John Doe
+            id:
+              type: integer
+              example: 1234
+            school:
+              type: string
+              example: University of XYZ
+            networth:
+              type: number
+              example: 1000000.0
+            car types:
+              type: array
+              items:
+                type: string
+                example: Sedan
+      responses:
+        BadRequest:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        ServerError:
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      schemas:
+        Error:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 123
+            message:
+              type: string
+              example: An error occurred
