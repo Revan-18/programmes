@@ -33,15 +33,6 @@ paths:
           $ref: '#/responses/BadRequest'
         "500":
           $ref: '#/responses/ServerError'
-  responses:
-    BadRequest:
-      description: Bad Request
-      schema:
-        $ref: '#/definitions/Error'
-    ServerError:
-      description: Server Error
-      schema:
-        $ref: '#/definitions/Error'
   definitions:
     Customer:
       type: object
@@ -73,7 +64,7 @@ paths:
         networth:
           type: number
           example: 1000000.0
-        car types:
+        car_types:
           type: array
           items:
             type: string
@@ -87,3 +78,12 @@ paths:
         message:
           type: string
           example: An error occurred
+  responses:
+    BadRequest:
+      description: Bad Request
+      schema:
+        $ref: '#/definitions/Error'
+    ServerError:
+      description: Server Error
+      schema:
+        $ref: '#/definitions/Error'
