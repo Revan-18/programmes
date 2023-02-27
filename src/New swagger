@@ -69,15 +69,6 @@ paths:
           items:
             type: string
             example: Sedan
-    Error:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 123
-        message:
-          type: string
-          example: An error occurred
   responses:
     BadRequest:
       description: Bad Request
@@ -87,3 +78,13 @@ paths:
       description: Server Error
       schema:
         $ref: '#/definitions/Error'
+  definitions:
+    Error:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        message:
+          type: string
+          example: An error occurred
